@@ -11,6 +11,7 @@ export class FormComponent implements OnInit {
   defaultAlterEgo: string;
   defaultPowers = ['Cura', 'Super força', 'Super inteligencia', 'Super flexibilidade', 'Calor solar'];
   addnewpower: boolean;
+  newHero: HeroModel;
   constructor() {
     this.defaultName = "--------";
     this.defaultAlterEgo = '----------';
@@ -35,7 +36,8 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(name: string, alterEgo: string, power: string) {
-    alert(power);
+    this.newHero = new HeroModel(name, power, alterEgo);
+    alert("Nome: " + this.newHero.name + "\nalterego: " + this.newHero.alterEgo + "\npoder: " + this.newHero.power);
   }
 
   ngOnInit() {
