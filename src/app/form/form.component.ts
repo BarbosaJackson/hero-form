@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeroModel} from "../hero.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {HeroService} from "../hero.service";
 
 @Component({
   selector: 'app-form',
@@ -11,10 +13,11 @@ export class FormComponent implements OnInit {
   defaultAlterEgo: string;
   defaultPowers = ['Cura', 'Super força', 'Super inteligencia', 'Super flexibilidade', 'Calor solar'];
   addnewpower: boolean;
-  newHero: HeroModel;
-  constructor() {
-    this.defaultName = "--------";
-    this.defaultAlterEgo = '----------';
+  defaultNames: string[] = ["Batman", "superman", "Coringa", "Flash", "Arrow"];
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private router: Router) {
+
+    this.defaultName = this.defaultNames[(Math.floor((Math.random() * 100) * Math.ceil(Math.random() * 100) * 73 * 13 * 23 * 123 + (Math.random() * 100)) % 5)];
+    this.defaultAlterEgo = '';
     this.addnewpower = true;
   }
 
@@ -27,20 +30,11 @@ export class FormComponent implements OnInit {
     this.addnewpower = !this.addnewpower;
   }
 
-  resetField(id: string) {
-    if(id == "name" && this.defaultName == '--------') {
-      this.defaultName = "";
-    } else if(id == 'alterEgo' && this.defaultAlterEgo == '----------') {
-      this.defaultAlterEgo = "";
-    }
-  }
-
   onSubmit(name: string, alterEgo: string, power: string) {
-    this.newHero = new HeroModel(name, power, alterEgo);
-    alert("Nome: " + this.newHero.name + "\nalterego: " + this.newHero.alterEgo + "\npoder: " + this.newHero.power);
+    this.heroService.addHero(new HeroModel(name, power, alterEgo));
+    this.router.navigate(['/']);
   }
 
   ngOnInit() {
   }
-
 }

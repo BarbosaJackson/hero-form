@@ -1,0 +1,19 @@
+<app-home></app-home>
+<div class="listHeroes">
+  <h1>Existe {{heroes.length}} cadastrado(s)</h1>
+  <span *ngIf="heroes.length > 0">
+    <p>São eles:</p>
+    <table class="steelBlueCols">
+      <tr>
+        <th>Nome</th>
+        <th>AlterEgo</th>
+        <th>Poder</th>
+      </tr>
+      <tr *ngFor="let hero of heroes">
+        <td> {{hero.name}} </td>
+        <td> {{hero.alterEgo}}</td>
+        <td> {{hero.power}}</td>
+      </tr>
+      </table>
+    </span>
+</div>

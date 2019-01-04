@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {HeroModel} from "./hero.model";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,5 @@ import {HeroModel} from "./hero.model";
 })
 export class AppComponent {
   title = 'hero-form';
-  hero: HeroModel[];
+
 }
